@@ -17,9 +17,10 @@ class MyGame : public AbstractGame {
 		std::vector<std::shared_ptr<GameKey>> gameKeys;
 
 		/* GAMEPLAY */
-		int score, numKeys, lives;
-		bool gameWon;
+		int score, numKeys, lives; // variables storing player score, keys remaining, and lives
+		bool gameWon; // boolean for checking if the game has been won
 
+		// function definitions for handling 'key' object events, updating, and rendering the game/UI
 		void handleKeyEvents();
 		void update();
 		void render();

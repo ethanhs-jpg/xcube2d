@@ -6,7 +6,12 @@
     ]
   },
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\demo",
+    "\\src\\engine",
+    "\\src\\engine\\custom"
   ],
+  "SelectedNode": "\\src\\engine\\custom\\MyEngineSystem.h",
   "PreviewInSolutionExplorer": false
 }
