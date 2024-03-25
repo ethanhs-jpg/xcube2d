@@ -28,18 +28,52 @@ Features to add
 ===============
 */
 
+class MyObject;
+
 class MyEngineSystem {
 	friend class XCube2Engine;
+	friend class MyObject;
+
 	private:
-		// private vector variables for gravity and drag
+		// private vector variables for gravity and acceleration
 		Vector2f gravity;
-		Vector2f drag;
+		Vector2f acceleration;
+
+		MyEngineSystem();
+
+		std::vector < std::shared_ptr<MyObject>> objects;
 
 	public:
 		void setBounds(float width, float height); // setting world bounds for collision
 		void setGravity(float gravityVal, float worldUpdateInterval); // setting value of gravity
 		void setAcceleration(float dragVal, float worldUpdateInterval); // setting value for acceleration/deceleration
 		void update();
+};
+
+class MyObject {
+	friend class MyEngineSystem;
+
+	protected:
+		Point2 center;
+		float lX, lY, hlX, hlY; // lengths and half lengths
+
+		Vector2f force;
+
+		void applyForce(const Vector2f&);
+
+	public:
+		MyObject(const Point2& center, float x, float y);
+
+		Point2 getCenter() { return center; }
+		float getLengthX() { return lX; }
+		float getLengthY() { return lY; }
+		float getHalfX() { return hlX; }
+		float getHalfY() { return hlY; }
+
+		bool isColliding(const MyObject& other);
+
+		virtual void applyGravity(const MyEngineSystem& engine);
+		virtual void applyAntiGravity(const MyEngineSystem& engine);
 };
 
 #endif
